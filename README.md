@@ -1,2 +1,9 @@
-# ebbflow
-An EEG-based app that uses the MW75 Neuro Streamer as a foundation for a focus app
+# Baseline
+
+**A personal state estimator with ambient, adaptive, and metacognitive surfaces.**
+
+Baseline uses consumer-grade EEG (the Master & Dynamic MW75 Neuro — 12-channel temporal-site, dry-electrode) together with optional multimodal sensors (voice, face, HRV) to model one user's "normal" cognitive and affective state, detect meaningful deviations from that normal, and drive interventions in response. Its cultural anchor is the *Blade Runner 2049* post-traumatic baseline test — here deliberately inverted from an instrument of institutional control into a self-administered tool for self-knowledge, self-regulation, and, optionally, communication with the user's own clinician.
+
+The system is built as one **shared sensing core** (streaming → feature extraction → contextual baselines → deviation scoring → a discrete state estimate) feeding three **independent surfaces**, each with its own risk profile, evaluation method, and development timeline: an **ambient controller** that lets the environment *follow* the user's state (lights, switches, desktop, do-not-disturb — low risk), an **adaptive music controller** that *modulates* state toward baseline (higher risk, opt-in), and a **metacognitive instrument** that runs standardised daily probes for longitudinal self-review and optional therapist export (slow cadence, high care). Because the surfaces are separate consumers of the core's output, each can be developed, evaluated, and published on its own.
+
+This is a single-subject (N=1) longitudinal study run with phased ABA single-case designs per surface. It is **local-first** — all data stays on the user's own machines, encrypted at rest, with no cloud sync — and **open-source**, including the Linux daemon, the Android app, and a contributed Linux port of the upstream `arctop/mw75-streamer`. See **[`research_brief.md`](research_brief.md)** for the full design, scientific grounding, and ethics, and **[`build_plan.md`](build_plan.md)** for the sequenced engineering plan.
