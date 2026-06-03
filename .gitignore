@@ -22,7 +22,17 @@ venv/
 # Node / web UI
 node_modules/
 dist/
+
+# Gradle
+.gradle/
 build/
+
+# Android / IDE
+local.properties
+*.iml
+.idea/
+.kotlin/
+captures/
 
 # OS junk
 .DS_Store
