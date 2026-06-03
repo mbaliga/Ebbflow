@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Minimal platform theme. The UI is Jetpack Compose, which supplies its own
+      Material 3 theming at runtime; this XML theme only needs to exist for the
+      manifest and to set a sensible window background / no action bar. Basing it
+      on a platform theme avoids pulling in AppCompat/Material XML dependencies.
+    -->
+    <style name="Theme.Ebbflow" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/ebb_background</item>
+        <item name="android:statusBarColor">@color/ebb_background</item>
+    </style>
+</resources>

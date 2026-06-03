@@ -2,6 +2,32 @@
 
 *Generated 2026-06-03. The next session (or you, weeks from now) can resume from this.*
 
+## Update 2026-06-03 — Android `:app` bring-up
+
+The native Android focus app (Phase 6 territory, "ebbflow") now has its **`:app`
+module**, built on the `:core-eeg` parser scaffold from PR #2. Work is on branch
+`claude/android-app-bring-up-ZI7yd` (merged PR #2's scaffold in, then added `:app`).
+
+- **`:core-eeg` (pure JVM, CI-tested):** added `FocusEstimator` + `BandPower` — a
+  **placeholder** theta/beta → 0..1 focus index, recomputed at ~2 Hz. `./gradlew
+  :core-eeg:test` → **13 tests pass** (7 parser + 6 focus). Verified here.
+- **`:app` (Android, NOT build-verified — no SDK here, no hardware):** faithful port
+  of the Python device layer — `Mw75DeviceFinder` (bonded/scan), `Mw75BleActivator`
+  (BLE handshake), `Mw75RfcommConnection` (RFCOMM ch.25 via reflection + SPP
+  fallbacks), `Mw75Controller` (lifecycle), `Mw75StreamingService` (foreground,
+  type=connectedDevice), Room (`FocusSample`), and a Compose UI (`MainActivity`,
+  `StreamScreen`, `StreamViewModel`, `StreamHub`).
+- **Build wiring:** `:app` is included in `settings.gradle.kts` **only when an Android
+  SDK is present**, so SDK-less CI still configures and builds `:core-eeg` alone.
+  Versions pinned in `gradle/libs.versions.toml` (AGP 8.7.3 / Gradle 8.14.3).
+- **Docs:** full module README at `app/README.md` (architecture, build, manual
+  hardware verification, known risks).
+- **Next:** build `:app` against the SDK and fix any compile fallout; pair an MW75 +
+  phone and run the manual verification in `app/README.md`; confirm the sample rate
+  empirically; later, replace the placeholder focus metric with the Phase 2 core.
+
+---
+
 ## TL;DR
 - All work to date is on branch `claude/tender-planck-pcYiy`; **PR #1 is open in draft** at https://github.com/mbaliga/baseline/pull/1, awaiting review/merge. **Nothing on `main` yet.**
 - Two commits were ahead of `main` before this one:

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ebbflow</string>
+    <string name="streaming_channel_name">EEG streaming</string>
+    <string name="streaming_notification_title">ebbflow is streaming EEG</string>
+</resources>
