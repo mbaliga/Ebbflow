@@ -23,15 +23,15 @@ include(":core-eeg")
 
 // Android application: BLE activation, RFCOMM streaming, foreground service, Room
 // storage, and the Compose UI. The Android Gradle Plugin needs the Android SDK at
-// configuration time, so :app is included only when an SDK is available. This lets
-// the pure-JVM CI (and any SDK-less checkout) configure and build :core-eeg alone.
-// Locally, set ANDROID_HOME / ANDROID_SDK_ROOT, or add sdk.dir to local.properties.
-val androidSdkAvailable = System.getenv("ANDROID_HOME") != null ||
-    System.getenv("ANDROID_SDK_ROOT") != null ||
-    file("local.properties").let { it.exists() && it.readText().contains("sdk.dir") }
+// configuration time, so :app is included only when local.properties declares an
+// sdk.dir. This is deliberately *not* keyed off ANDROID_HOME/ANDROID_SDK_ROOT:
+// GitHub's hosted CI runners set those env vars, which would drag the Android build
+// into the pure-JVM CI. Android Studio writes local.properties automatically; for a
+// CLI build run:  echo "sdk.dir=$ANDROID_HOME" > local.properties
+val androidSdkAvailable = file("local.properties").let { it.exists() && it.readText().contains("sdk.dir") }
 
 if (androidSdkAvailable) {
     include(":app")
 } else {
-    println("[ebbflow] Android SDK not found — skipping :app (building :core-eeg only).")
+    println("[ebbflow] No sdk.dir in local.properties — skipping :app (building :core-eeg only).")
 }

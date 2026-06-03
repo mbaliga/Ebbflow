@@ -59,16 +59,18 @@ the number accordingly.
 ## Building
 
 The Android Gradle Plugin needs the Android SDK at configuration time, so the
-`:app` module is included **only when an SDK is present** (see
-[`../settings.gradle.kts`](../settings.gradle.kts)). Without an SDK — e.g. in CI —
-only `:core-eeg` is configured and built.
+`:app` module is included **only when `local.properties` declares an `sdk.dir`**
+(see [`../settings.gradle.kts`](../settings.gradle.kts)). Without it — e.g. in CI —
+only `:core-eeg` is configured and built. We key off `local.properties` rather than
+`ANDROID_HOME`/`ANDROID_SDK_ROOT` on purpose: GitHub's hosted runners set those env
+vars, which would otherwise pull the Android build into the pure-JVM CI.
 
 ```bash
-# Point Gradle at your SDK (either works):
-export ANDROID_HOME=$HOME/Android/Sdk          # or add sdk.dir=… to local.properties
+# Android Studio writes local.properties for you. For a CLI build, create it once:
+echo "sdk.dir=$ANDROID_HOME" > local.properties   # ANDROID_HOME = your SDK path
 
-./gradlew :app:assembleDebug                    # build the APK
-./gradlew :core-eeg:test                        # pure-JVM tests (no SDK needed)
+./gradlew :app:assembleDebug                       # build the APK
+./gradlew :core-eeg:test                           # pure-JVM tests (no SDK needed)
 ```
 
 - JDK 17+, Android SDK with platform 35 installed.
