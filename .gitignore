@@ -1,0 +1,29 @@
+# Durable local data — the EEG corpus, baselines, features, event logs.
+# Never committed; lives only on the user's machines (encrypted at rest).
+data/*
+!data/.gitkeep
+
+# Secrets — never commit (Home Assistant long-lived tokens, API keys, etc.)
+.env
+*.env
+secrets.yaml
+secrets.yml
+secrets/
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node / web UI
+node_modules/
+dist/
+build/
+
+# OS junk
+.DS_Store
+Thumbs.db
