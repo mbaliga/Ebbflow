@@ -16,10 +16,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "ebbflow"
 
-// Pure-JVM EEG core (packet parsing, constants, DSP). Buildable/testable without
-// the Android SDK. The Android :app module (Bluetooth, foreground service, Room,
-// Compose UI) is added on top and depends on this module.
-include(":core-eeg")
+// The EEG core (parser + FocusEstimator) is the PROPRIETARY Baseline engine and lives in
+// the private `baseline` repo (D-S), NOT here — Ebbflow is the OPEN app that licenses it.
+// It is therefore not an `include`d module; :app consumes it as a licensed binary once the
+// engine publishes one (see app/build.gradle.kts). Until then :app won't build — by design.
 
 // Android application: BLE activation, RFCOMM streaming, foreground service, Room
 // storage, and the Compose UI. The Android Gradle Plugin needs the Android SDK at

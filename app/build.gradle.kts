@@ -43,7 +43,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-eeg"))
+    // The EEG parse + FocusEstimator (packages ai.ebbflow.baseline.eeg.*) are the
+    // PROPRIETARY Baseline engine — they live in the private `baseline` repo (D-S), not
+    // here. Ebbflow is the OPEN app and LICENSES that engine. Wire this once the Baseline
+    // engine publishes a binary artifact (the licensing seam is not built yet, so :app
+    // does not compile until then — by design: the open app can't ship the paid engine):
+    //   implementation("ai.ebbflow.baseline:core-eeg:<version>")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -1,4 +1,15 @@
-# Baseline
+# Ebbflow — the open EEG app
+
+> **Constellation (D-S).** Ebbflow is the **open-source EEG application**: it captures EEG
+> (from the MW75 via the [`mw75-streamer`](https://github.com/mbaliga/mw75-streamer) layer, or
+> any future hardware), stores it locally, and drives the ambient / adaptive-music /
+> metacognitive surfaces. It **licenses** the **Baseline engine** — the *proprietary*
+> deviation-from-optimum + state-inference core (EEG parse + `FocusEstimator`), which lives in
+> the private [`baseline`](https://github.com/mbaliga/baseline) repo, **not here**. `:app`
+> consumes that engine as a licensed binary; until that seam is published, `:app` intentionally
+> does not compile (the open app cannot ship the paid engine — see `settings.gradle.kts`).
+> The vision docs below (`research_brief.md` / `build_plan.md`) describe the whole product and
+> still use the pre-D-S "Baseline" framing; they will be split (engine → `baseline`).
 
 **A personal state estimator with ambient, adaptive, and metacognitive surfaces.**
 
