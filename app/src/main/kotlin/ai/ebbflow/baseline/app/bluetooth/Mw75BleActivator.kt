@@ -9,7 +9,7 @@ import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import ai.ebbflow.baseline.eeg.Mw75Constants
+import ai.ebbflow.eeg.Mw75Constants
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.delay

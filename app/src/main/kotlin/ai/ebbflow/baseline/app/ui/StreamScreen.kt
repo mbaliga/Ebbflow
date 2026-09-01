@@ -27,7 +27,7 @@ import kotlin.math.abs
 
 /**
  * Single-screen bring-up UI: a start/stop control, the live connection phase, the
- * placeholder focus index, and enough diagnostics (battery, packet stats, latest
+ * acquisition quality, and enough diagnostics (battery, packet stats, latest
  * channel µV) to confirm the end-to-end pipeline is working on real hardware.
  */
 @Composable
@@ -54,13 +54,13 @@ fun StreamScreen(
     ) {
         Text("ebbflow", style = MaterialTheme.typography.headlineMedium)
         Text(
-            "MW75 EEG focus — bring-up",
+            "MW75 EEG acquisition",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         StatusCard(state)
-        FocusCard(state)
+        SignalQualityCard(state)
 
         if (streaming || state.validPackets > 0) {
             DiagnosticsCard(state, persistedCount)
@@ -104,32 +104,32 @@ private fun StatusCard(state: StreamState) {
 }
 
 @Composable
-private fun FocusCard(state: StreamState) {
+private fun SignalQualityCard(state: StreamState) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             Modifier.fillMaxWidth().padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Text("Focus (placeholder)", style = MaterialTheme.typography.labelLarge)
-            val focus = state.focus
+            Text("Signal quality", style = MaterialTheme.typography.labelLarge)
+            val usable = state.usableChannelsFraction
             Text(
-                focus?.let { "%.0f".format(it * 100) } ?: "—",
+                state.qualityLabel?.lowercase()?.replaceFirstChar { it.uppercase() } ?: "—",
                 style = MaterialTheme.typography.displayLarge,
             )
             LinearProgressIndicator(
-                progress = { (focus ?: 0.0).toFloat().coerceIn(0f, 1f) },
+                progress = { (usable ?: 0.0).toFloat().coerceIn(0f, 1f) },
                 modifier = Modifier.fillMaxWidth(),
             )
-            state.thetaBetaRatio?.let {
-                Text(
-                    "θ/β ratio %.2f".format(it),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            usable?.let { LabeledValue("Usable channels", "%.0f%%".format(it * 100)) }
+            state.clippedSamplesFraction?.let {
+                LabeledValue("Clipped samples", "%.1f%%".format(it * 100))
+            }
+            state.flatlineChannelsFraction?.let {
+                LabeledValue("Flatline channels", "%.0f%%".format(it * 100))
             }
             Text(
-                "Not a validated measure — replaced by the Phase 2 sensing core.",
+                "Acquisition integrity only. This does not estimate focus or mental state.",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,

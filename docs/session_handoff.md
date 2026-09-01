@@ -1,5 +1,8 @@
 # Baseline — Session Handoff
 
+> Historical only. The placeholder-focus bring-up below is superseded by the
+> `:core-eeg-community` signal-quality pipeline on the canonical Ebbflow branch.
+
 *Generated 2026-06-03. The next session (or you, weeks from now) can resume from this.*
 
 ## Update 2026-06-03 — Android `:app` bring-up
