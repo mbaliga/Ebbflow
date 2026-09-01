@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ai.ebbflow.baseline.app.data.AppDatabase
-import ai.ebbflow.baseline.app.data.FocusSample
+import ai.ebbflow.baseline.app.data.SignalQualitySample
 import ai.ebbflow.baseline.app.model.StreamHub
 import ai.ebbflow.baseline.app.model.StreamState
 import ai.ebbflow.baseline.app.service.Mw75StreamingService
@@ -20,11 +20,11 @@ import kotlinx.coroutines.flow.stateIn
  */
 class StreamViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val dao = AppDatabase.get(app).focusSampleDao()
+    private val dao = AppDatabase.get(app).signalQualitySampleDao()
 
     val state: StateFlow<StreamState> = StreamHub.state
 
-    val recent: StateFlow<List<FocusSample>> = dao.recent(limit = 60)
+    val recent: StateFlow<List<SignalQualitySample>> = dao.recent(limit = 60)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
     fun start() = Mw75StreamingService.start(getApplication())

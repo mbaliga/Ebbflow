@@ -16,10 +16,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "ebbflow"
 
-// The EEG core (parser + FocusEstimator) is the PROPRIETARY Baseline engine and lives in
-// the private `baseline` repo (D-S), NOT here — Ebbflow is the OPEN app that licenses it.
-// It is therefore not an `include`d module; :app consumes it as a licensed binary once the
-// engine publishes one (see app/build.gradle.kts). Until then :app won't build — by design.
+// Open acquisition and signal-quality primitives. Advanced state estimation remains an
+// optional Baseline integration, but Ebbflow never requires it to build or capture EEG.
+include(":core-eeg-community")
 
 // Android application: BLE activation, RFCOMM streaming, foreground service, Room
 // storage, and the Compose UI. The Android Gradle Plugin needs the Android SDK at
@@ -33,5 +32,5 @@ val androidSdkAvailable = file("local.properties").let { it.exists() && it.readT
 if (androidSdkAvailable) {
     include(":app")
 } else {
-    println("[ebbflow] No sdk.dir in local.properties — skipping :app (building :core-eeg only).")
+    println("[ebbflow] No sdk.dir in local.properties — skipping :app.")
 }
