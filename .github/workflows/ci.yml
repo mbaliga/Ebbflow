@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  core-eeg-tests:
-    name: core-eeg unit tests
+  community-core-tests:
+    name: community EEG core unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,5 +16,5 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: gradle
-      - name: Run :core-eeg tests
-        run: ./gradlew :core-eeg:test --no-daemon --console=plain
+      - name: Run community core tests
+        run: ./gradlew :core-eeg-community:test --no-daemon --console=plain

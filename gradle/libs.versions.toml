@@ -3,7 +3,7 @@ kotlin = "2.1.0"
 junit = "4.13.2"
 
 # Android / app stack. The :app module needs the Android SDK to build; CI only
-# builds :core-eeg (pure JVM). Versions are pinned to a set known to be mutually
+# builds :core-eeg-community (pure JVM). Versions are pinned to a set known to be mutually
 # compatible with Gradle 8.14.3 (AGP 8.7.x requires Gradle >= 8.9).
 agp = "8.7.3"
 ksp = "2.1.0-1.0.29"

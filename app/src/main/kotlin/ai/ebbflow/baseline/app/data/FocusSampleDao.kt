@@ -6,17 +6,17 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FocusSampleDao {
+interface SignalQualitySampleDao {
 
     @Insert
-    suspend fun insert(sample: FocusSample)
+    suspend fun insert(sample: SignalQualitySample)
 
-    @Query("SELECT COUNT(*) FROM focus_samples")
+    @Query("SELECT COUNT(*) FROM signal_quality_samples")
     suspend fun count(): Long
 
-    @Query("SELECT * FROM focus_samples ORDER BY timestampMs DESC LIMIT :limit")
-    fun recent(limit: Int = 120): Flow<List<FocusSample>>
+    @Query("SELECT * FROM signal_quality_samples ORDER BY timestampMs DESC LIMIT :limit")
+    fun recent(limit: Int = 120): Flow<List<SignalQualitySample>>
 
-    @Query("DELETE FROM focus_samples")
+    @Query("DELETE FROM signal_quality_samples")
     suspend fun clear()
 }

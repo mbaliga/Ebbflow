@@ -5,13 +5,13 @@ import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.util.Log
 import ai.ebbflow.baseline.app.data.AppDatabase
-import ai.ebbflow.baseline.app.data.FocusSample
+import ai.ebbflow.baseline.app.data.SignalQualitySample
 import ai.ebbflow.baseline.app.model.StreamHub
 import ai.ebbflow.baseline.app.model.StreamPhase
-import ai.ebbflow.baseline.eeg.EegPacket
-import ai.ebbflow.baseline.eeg.FocusEstimator
-import ai.ebbflow.baseline.eeg.Mw75Constants
-import ai.ebbflow.baseline.eeg.PacketParser
+import ai.ebbflow.eeg.EegPacket
+import ai.ebbflow.eeg.Mw75Constants
+import ai.ebbflow.eeg.PacketParser
+import ai.ebbflow.eeg.SignalQualityEstimator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicLong
  *   1. find the device (bonded, else BLE scan)
  *   2. BLE activation handshake ([Mw75BleActivator])
  *   3. settle, then open RFCOMM ([Mw75RfcommConnection])
- *   4. stream: raw bytes → [PacketParser] → [FocusEstimator] → [StreamHub] + Room
+ *   4. stream: raw bytes → [PacketParser] → [SignalQualityEstimator] → [StreamHub] + Room
  *   5. on stop/error: close RFCOMM, best-effort BLE disable, publish terminal state
  *
  * Owned by [ai.ebbflow.baseline.app.service.Mw75StreamingService]. [start] blocks
@@ -37,9 +37,9 @@ class Mw75Controller(
     private val context: Context,
     private val scope: CoroutineScope,
 ) {
-    private val dao = AppDatabase.get(context).focusSampleDao()
+    private val dao = AppDatabase.get(context).signalQualitySampleDao()
     private val parser = PacketParser()
-    private val focus = FocusEstimator() // 500 Hz nominal, 2 s window, 0.5 s hop
+    private val quality = SignalQualityEstimator()
     private val persisted = AtomicLong(0)
 
     @Volatile private var rfcomm: Mw75RfcommConnection? = null
@@ -49,7 +49,7 @@ class Mw75Controller(
     suspend fun start() {
         running = true
         persisted.set(0)
-        focus.reset()
+        quality.reset()
 
         try {
             // --- 1. Find device ---
@@ -104,17 +104,18 @@ class Mw75Controller(
     }
 
     private fun handlePacket(packet: EegPacket) {
-        // FocusEstimator only returns a value at its hop cadence (~2 Hz), which
-        // throttles UI/DB churn away from the 500 Hz packet rate.
-        val score = focus.add(packet) ?: return
+        // Quality summaries are emitted at a low cadence to avoid UI/DB churn.
+        val summary = quality.add(packet) ?: return
         val stats = parser.stats
         val mean = packet.channels.average()
 
         StreamHub.update {
             it.copy(
                 phase = StreamPhase.STREAMING,
-                focus = score,
-                thetaBetaRatio = focus.lastThetaBetaRatio,
+                usableChannelsFraction = summary.usableChannelsFraction,
+                clippedSamplesFraction = summary.clippedSamplesFraction,
+                flatlineChannelsFraction = summary.flatlineChannelsFraction,
+                qualityLabel = summary.label.name,
                 validPackets = stats.validPackets,
                 invalidPackets = stats.invalidPackets,
                 errorRatePercent = stats.errorRate,
@@ -126,10 +127,11 @@ class Mw75Controller(
         scope.launch {
             runCatching {
                 dao.insert(
-                    FocusSample(
+                    SignalQualitySample(
                         timestampMs = System.currentTimeMillis(),
-                        focus = score,
-                        thetaBetaRatio = focus.lastThetaBetaRatio,
+                        usableChannelsFraction = summary.usableChannelsFraction,
+                        clippedSamplesFraction = summary.clippedSamplesFraction,
+                        flatlineChannelsFraction = summary.flatlineChannelsFraction,
                         meanUv = mean,
                     ),
                 )

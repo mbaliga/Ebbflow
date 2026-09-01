@@ -1,5 +1,5 @@
 plugins {
-    // kotlin.jvm (used by :core-eeg) and kotlin.android (used by :app) are the same
+    // kotlin.jvm (used by :core-eeg-community) and kotlin.android (used by :app) are the same
     // underlying Kotlin Gradle plugin artifact, so both must be declared here with a
     // single version to reconcile them on the shared plugin classpath; otherwise the
     // second module to request it fails with "already on the classpath with an

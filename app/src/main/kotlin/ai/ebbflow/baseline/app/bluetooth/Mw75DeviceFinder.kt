@@ -7,7 +7,7 @@ import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.util.Log
-import ai.ebbflow.baseline.eeg.Mw75Constants
+import ai.ebbflow.eeg.Mw75Constants
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout

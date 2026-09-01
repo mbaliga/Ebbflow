@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.util.Log
-import ai.ebbflow.baseline.eeg.Mw75Constants
+import ai.ebbflow.eeg.Mw75Constants
 import java.io.IOException
 import java.util.UUID
 
