@@ -64,31 +64,26 @@ EEG is health data, so state the reasoning plainly in the policy and keep it tru
 readings go from the headset over Bluetooth to the phone, into a local Room
 database, and nowhere else. There is no cloud sync, no account, and no server.
 
-### Permissions — one to remove before submitting
-| Permission | Why | Action |
+### Permissions — already correct, nothing to change
+
+**An earlier version of this sheet recommended dropping `ACCESS_FINE_LOCATION` and
+adding `neverForLocation` to `BLUETOOTH_SCAN`. That was wrong: both were already
+done.** The manifest is correctly scoped and carries a comment explaining why.
+
+| Permission | Scope in the manifest | Why |
 |---|---|---|
-| `BLUETOOTH_CONNECT` | Connect to the headset. | Keep. |
-| `BLUETOOTH_SCAN` | Find the headset when it is not already bonded. | Keep, **and add `android:usesPermissionFlags="neverForLocation"`**. |
-| `ACCESS_FINE_LOCATION` | Legacy. Only ever present because pre-Android-12 BLE scanning required it. | **Remove**, see below. |
-| `BLUETOOTH`, `BLUETOOTH_ADMIN` | Legacy, `maxSdkVersion="30"`. | Keep, but confirm they carry `maxSdkVersion` so they do not apply on modern devices. |
-| `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_CONNECTED_DEVICE` | Keep the stream alive with the screen off. `connectedDevice` is the correct type and is easy to justify. | Keep. |
-| `POST_NOTIFICATIONS` | The foreground-service notification. | Keep. |
+| `BLUETOOTH_SCAN` | `usesPermissionFlags="neverForLocation"`, `tools:targetApi="s"` | Find the headset. The flag is already set, correctly: the MW75 is matched by name/UUID and no location is derived from BLE. |
+| `BLUETOOTH_CONNECT` | `tools:targetApi="s"` | Connect to the headset. |
+| `BLUETOOTH`, `BLUETOOTH_ADMIN` | `maxSdkVersion="30"` | Legacy era only. Already scoped. |
+| `ACCESS_FINE_LOCATION` | `maxSdkVersion="30"` | **Keep it.** On API 30 and below the platform refuses to BLE-scan at all without it (`BluetoothPermissions.kt` requests it only on those versions). `minSdk` is 26, so those devices are in range. It is already capped so it never applies on modern Android. |
+| `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_CONNECTED_DEVICE` | — | Keep the stream alive with the screen off. `connectedDevice` is the correct type and justifies easily. |
+| `POST_NOTIFICATIONS` | — | The foreground-service notification. |
 
-**Dropping `ACCESS_FINE_LOCATION` is worth doing before the first submission.**
-`minSdk` is 26, so the legacy scan path is technically still reachable, but the
-supported device for this app is a modern phone paired with an MW75. Declaring
-fine location on a *health* app forces a location entry into Data safety, adds a
-runtime prompt users find alarming in this context, and buys nothing:
-
-```xml
-<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
-    android:usesPermissionFlags="neverForLocation" />
-<!-- delete ACCESS_FINE_LOCATION, or gate it android:maxSdkVersion="30" -->
-```
-
-If you keep it, Data safety must declare precise location as collected, and the
-listing has to explain why an EEG app wants your location. That is a much worse
-place to be than a small manifest edit.
+**Data safety consequence:** because `ACCESS_FINE_LOCATION` is capped at API 30 and
+flagged `neverForLocation` on the modern scan path, location is neither collected nor
+used to derive the user's position. Declare no location data. Say so on the strength
+of the manifest scoping and `BluetoothPermissions.kt`, not on a claim that the
+permission is absent — it is present, deliberately, for old devices.
 
 ### Content rating
 - Category `Utility, Productivity, Communication, or Other`.
@@ -115,8 +110,7 @@ place to be than a small manifest edit.
 
 - [ ] `:app` actually builds (needs the engine seam resolved).
 - [ ] Decide `applicationId` permanently: `ai.ebbflow.baseline.app` or `ai.ebbflow.app`.
-- [ ] Remove `ACCESS_FINE_LOCATION`; add `neverForLocation` to `BLUETOOTH_SCAN`.
-- [ ] Confirm `BLUETOOTH`/`BLUETOOTH_ADMIN` carry `maxSdkVersion="30"`.
+- [ ] Nothing to change in the manifest — it is already correctly scoped (see Permissions above).
 - [ ] Re-read the listing for any accidental health claim.
 - [ ] Screenshots: pairing, the live signal, a deviation timeline. **A real headset
       and a real signal.** Do not fake an EEG trace in a store screenshot.
