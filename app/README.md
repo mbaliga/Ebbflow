@@ -25,3 +25,5 @@ Build with Android SDK 35 configured in `local.properties`:
 Hardware validation still requires a paired MW75 and a real Android device. Verify activation,
 reconnect, packet error rate, clipping, flatlining, sample cadence, permission revocation, and
 cleanup after Bluetooth loss before treating capture as production-ready.
+
+Porting beyond Android (plan only, nothing built): see [docs/porting_plan.md](../docs/porting_plan.md).
