@@ -264,3 +264,54 @@ Outside this repo: `Personal-Tracker/PORTING_PROGRAM.md` (§0 to §3, §4, §5 E
 `README.md` and `docs-src/server.rst` (server-mode protocol: `connect`, `disconnect`, `status`,
 `eeg_data`, `heartbeat`, `error`), read at its `main` (macOS-only v1.0.8); PR #1 and PR #3 contents were
 not read for this plan.
+
+## Owner rulings and the proposed line (added 2026-10-07)
+
+Status: PLAN. Nothing here is built, run on a device, signed or submitted. The program-level plan is Personal-Tracker `PORTING_PROGRAM.md` ([PR #10](https://github.com/mbaliga/Personal-Tracker/pull/10)), which holds the owner's rulings and section 5A, the proposed port / no-port line. The cells, estimates and open questions above are this repo's original plan and are unedited. Where the owner has since answered a question, the answer is below. Section 5A is a proposal; the owner has not yet confirmed it.
+
+### Where Ebbflow sits in the proposed line (program section 5A.3, a proposal)
+
+| Target       | Verdict | Weeks and flags |
+| ------------ | ------- | --------------- |
+| Ubuntu Touch | no-port | -               |
+| Linux        | port    | 4w              |
+| iOS/iPadOS   | no-port | -               |
+| macOS        | port    | 3w              |
+| Windows      | port    | 3w              |
+
+Key: `follows` means it ports only as far as the products that depend on it; `exists` means the program reads it as already running there, unverified (finish, verify and sign); flags: `g` gated on a prerequisite, `r` re-estimate or floor, `o` its own program, `s` scope note. The program's P4, P8, P12 and P13 gate whole columns or repos and are not flagged per cell. A port verdict counts the deliverable in the line; where this repo's plan calls a deliverable a reframe (program rule R12) it keeps that label. Tests cited in the reason: (a) the owner said it is needed there; (b) its job is really done on that OS by real users; (c) that OS is where it is sold or its audience is; it has no reason to exist if (x) its surface is absent or untouchable, (y) the capability is forbidden or impossible, or (z) the only form is a thin wrapper or a different product nobody asked for. P-numbers and OQ-numbers refer to the program plan (Personal-Tracker `PORTING_PROGRAM.md`, sections 5A.5 and 8).
+
+Reason: Desktop is its declared primary platform. iOS cannot capture (RFCOMM, MFi). On UT the only planned shape is a thin LAN viewer, the excluded substitute; mw75-streamer's own UT click is that repo's cell, not a port of Ebbflow, and a native Qt capture app (4 to 6 weeks) is not counted in the line.
+
+### Owner rulings that apply here
+
+- **Ubuntu Touch scope (2026-10-06):** "Native only, no substitutes" for Android-only products (the program marks this repo's Ubuntu Touch cell as a substitute). This plan's own Ubuntu Touch cell above (a thin LAN viewer click) is a substitute the ruling excludes, which is why the proposed verdict is no-port.
+- **OQ-22 key custody (2026-10-06):** "OS keystore, weaker fallback shown (Recommended)". Ebbflow holds no cloud keys; the ruling matters only if its Q10 picks app-level encryption at rest.
+- **OQ-31 Mac (2026-10-06 and 2026-10-07):** "Buy a Mac", and on 2026-10-07 an Apple-silicon Mac mini, not yet bought. The proposed line has no iOS port for Ebbflow; its macOS cell is a Developer ID dmg and the macOS channel stays open (OQ-3, OQ-4).
+- **OQ-20 CI (2026-10-06):** "Linux-only CI when private (Recommended)": this repo is public, so the ruling does not limit its macOS and Windows lanes; going private would stop them. Actions artifact storage is still exhausted (program rule R6).
+- **OQ-5 hardware (2026-10-06):** the owner's answer changes which of their other machines can serve as device gates, so a gate this plan names on specific hardware may be moved or dropped. Which machine carries which device gate is not decided (OQ-33).
+- **Directives (2026-10-06):** "Draft amendments for approval": program directives I-1 to I-12 and rules R1 to R12 are unchanged; PROPOSED-1 to PROPOSED-4 in Personal-Tracker `DECISIONS.md` are drafts awaiting the owner.
+
+### Prerequisites and open questions that touch this repo (program sections 5A.5 and 8)
+
+Prerequisites (program-level; not costed here):
+
+- program P8: An Apple-silicon Mac (OQ-31: a Mac mini chosen on 2026-10-07, not yet bought)
+- program P13: OQ-12: Ebbflow has no LICENSE, which gates distributable builds
+
+Owner questions in the program register that concern this repo (status as of 2026-10-07):
+
+- OQ-3 (open): Signing custody
+- OQ-4 (open): Channels and store compatibility
+- OQ-5 (ruled): Hardware stance
+- OQ-12 (open): Licences for repos without a LICENSE
+- OQ-13 (open): mw75-streamer: merge strategy for PRs #1 and #3
+- OQ-20 (ruled): CI minutes, storage and repo visibility
+- OQ-22 (ruled): Secret custody per platform
+- OQ-23 (open): EEG canonical transport layer per OS
+- OQ-25 (open): Identifier registry
+- OQ-26 (open): I-3 scope for the non-Hyle repos (Ebbflow is named)
+- OQ-31 (ruled): CI for App Store builds; which Mac
+- OQ-33 (open): Hardware details still open
+
+When the owner confirms or changes the line, this repo's original cells above stay as the engineering detail; only the verdicts and re-costs in program section 5A change.
