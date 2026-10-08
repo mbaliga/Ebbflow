@@ -1,6 +1,6 @@
 # Ebbflow
 
-Ebbflow is the open, local-first EEG acquisition application. It owns device connection,
+Ebbflow is the source-available, local-first EEG acquisition application. It owns device connection,
 signal-quality checks, explicit raw-data capture, EEG features, probes, and opt-in ambient,
 music, and neurofeedback experiences.
 
@@ -32,3 +32,7 @@ and evidence grade.
 
 The older `research_brief.md` and `build_plan.md` are retained as historical research inputs;
 they are not the current cross-repository architecture.
+
+## Licence
+
+Source-available, free for noncommercial use under the [PolyForm Noncommercial License 1.0.0](LICENSE). If you make money with it, you need a commercial licence: see [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).
