@@ -67,4 +67,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // JVM unit tests for the home-screen widget logic (same JUnit 4 as :core-eeg-community).
+    testImplementation(libs.junit)
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- image template, small (about 2x1): the line alone; its content description carries the numbers. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/w_image"
+        style="@style/Widget.Ebbflow.Chart"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/w_empty"
+        style="@style/Widget.Ebbflow.Body"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Initial layout, shown until the first update arrives. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root"
+    android:gravity="center_vertical">
+
+    <TextView
+        style="@style/Widget.Ebbflow.Caption"
+        android:text="@string/app_name" />
+
+    <TextView
+        style="@style/Widget.Ebbflow.Body"
+        android:text="@string/widget_loading" />
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- stat / card template, small (about 2x1): shape + value, one caption line. The whole
+     widget is one tap target. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root"
+    android:gravity="center_vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/w_glyph"
+            style="@style/Widget.Ebbflow.Glyph" />
+
+        <TextView
+            android:id="@+id/w_value"
+            style="@style/Widget.Ebbflow.Value" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/w_caption"
+        style="@style/Widget.Ebbflow.Caption" />
+</LinearLayout>

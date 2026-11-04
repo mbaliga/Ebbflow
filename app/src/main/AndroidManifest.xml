@@ -52,5 +52,105 @@
             android:exported="false"
             android:foregroundServiceType="connectedDevice" />
 
+        <!--
+          Home-screen widgets (docs/widgets.md). Providers are exported so any launcher can
+          bind them; they show acquisition integrity only and never start Bluetooth. The
+          time/zone/locale actions redraw printed times and words.
+        -->
+        <receiver
+            android:name=".widget.HeadsetWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_headset">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_headset" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.QualityWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_quality">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_quality" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.LastCaptureWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_last_capture">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_last_capture" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.CaptureWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_capture">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_capture" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.StoredWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_stored">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_stored" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.HistoryWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_history">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_history" />
+        </receiver>
+
+        <!-- The widgets' self-scheduled redraw (midnight, and the live-session check). -->
+        <receiver
+            android:name=".widget.WidgetActionReceiver"
+            android:exported="false" />
+
     </application>
 </manifest>

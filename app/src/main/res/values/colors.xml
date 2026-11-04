@@ -3,4 +3,16 @@
     <color name="ebb_background">#FF101418</color>
     <color name="ic_launcher_background">#FF101418</color>
     <color name="ebb_accent">#FF4FC3F7</color>
+
+    <!--
+      Home-screen widget colours (day; values-night holds the night pair). They follow the
+      app's own palette: the dark ground and light-blue accent of the Compose theme. Colour
+      never carries meaning on a widget: every state is a shape and a word.
+    -->
+    <color name="widget_surface">#FFF4F7FA</color>
+    <color name="widget_on_surface">#FF101418</color>
+    <color name="widget_on_surface_variant">#FF44505C</color>
+    <color name="widget_accent">#FF0277BD</color>
+    <color name="widget_pad">#FFDCE7F0</color>
+    <color name="widget_pad_pressed">#FFC3CDD6</color>
 </resources>

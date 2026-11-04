@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Picker preview (before Android 12) for the Quality history widget. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="110dp"
+    android:viewportWidth="220"
+    android:viewportHeight="110">
+    <path
+        android:fillColor="#FF181D23"
+        android:pathData="M12,0 L208,0 Q220,0 220,12 L220,98 Q220,110 208,110 L12,110 Q0,110 0,98 L0,12 Q0,0 12,0 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M14,14 h80 v6 h-80 Z" />
+    <path
+        android:strokeColor="#FF4FC3F7"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M14,44 L30,40 L46,42 L62,58 L78,54 L94,40 L110,38 L126,46 L142,40 L158,36 L174,38 L190,34 L206,36" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M14,86 h150 v6 h-150 Z" />
+</vector>

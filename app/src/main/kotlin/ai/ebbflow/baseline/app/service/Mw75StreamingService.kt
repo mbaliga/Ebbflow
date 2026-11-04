@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import ai.ebbflow.baseline.app.R
 import ai.ebbflow.baseline.app.bluetooth.Mw75Controller
 import ai.ebbflow.baseline.app.ui.MainActivity
+import ai.ebbflow.baseline.app.widget.WidgetPublisher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -28,6 +29,13 @@ class Mw75StreamingService : LifecycleService() {
 
     private var controller: Mw75Controller? = null
     private var sessionJob: Job? = null
+
+    override fun onCreate() {
+        super.onCreate()
+        // The service is the only writer of StreamHub; from here on, phase, battery and
+        // quality changes reach the home-screen widgets (and their last-known snapshot).
+        WidgetPublisher.start(applicationContext)
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)

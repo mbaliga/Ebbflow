@@ -12,13 +12,16 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun signalQualitySampleDao(): SignalQualitySampleDao
 
     companion object {
+        /** The database file name; the widgets report its size on disk. */
+        const val DATABASE_NAME = "ebbflow.db"
+
         @Volatile private var instance: AppDatabase? = null
 
         fun get(context: Context): AppDatabase = instance ?: synchronized(this) {
             instance ?: Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "ebbflow.db",
+                DATABASE_NAME,
             ).addMigrations(MIGRATION_1_2).build().also { instance = it }
         }
 

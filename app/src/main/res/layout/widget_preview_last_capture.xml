@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Picker preview for the Last capture widget: sample content only. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Widget.Ebbflow.Title"
+            android:text="@string/widget_title_last_capture" />
+
+        <TextView
+            style="@style/Widget.Ebbflow.AsOf"
+            android:text="@string/widget_preview_time" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Widget.Ebbflow.Glyph" />
+
+        <TextView
+            style="@style/Widget.Ebbflow.Value"
+            android:text="@string/widget_preview_duration" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/Widget.Ebbflow.Caption"
+        android:text="@string/widget_preview_capture_caption" />
+</LinearLayout>

@@ -19,4 +19,17 @@ interface SignalQualitySampleDao {
 
     @Query("DELETE FROM signal_quality_samples")
     suspend fun clear()
+
+    /** Newest-first integrity columns only (no µV), for the home-screen widgets. */
+    @Query(
+        "SELECT timestampMs, usableChannelsFraction, clippedSamplesFraction, flatlineChannelsFraction " +
+            "FROM signal_quality_samples ORDER BY timestampMs DESC LIMIT :limit",
+    )
+    suspend fun latestQuality(limit: Int): List<QualityRow>
+
+    @Query("SELECT MIN(timestampMs) FROM signal_quality_samples")
+    suspend fun oldestTimestampMs(): Long?
+
+    @Query("SELECT MAX(timestampMs) FROM signal_quality_samples")
+    suspend fun newestTimestampMs(): Long?
 }

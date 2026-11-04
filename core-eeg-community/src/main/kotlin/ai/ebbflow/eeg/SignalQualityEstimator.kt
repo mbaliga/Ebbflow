@@ -2,7 +2,36 @@ package ai.ebbflow.eeg
 
 import kotlin.math.abs
 
-enum class SignalQualityLabel { GOOD, FAIR, POOR }
+enum class SignalQualityLabel {
+    GOOD,
+    FAIR,
+    POOR,
+    ;
+
+    companion object {
+        /** GOOD needs at least this usable-channel share... */
+        const val GOOD_MIN_USABLE = 0.9
+
+        /** ...and clipping strictly below this share. */
+        const val GOOD_MAX_CLIPPED = 0.01
+
+        /** FAIR needs at least this usable-channel share... */
+        const val FAIR_MIN_USABLE = 0.65
+
+        /** ...and clipping strictly below this share. Anything else is POOR. */
+        const val FAIR_MAX_CLIPPED = 0.05
+
+        /**
+         * The one place the acquisition label is decided, so a summary computed live and one
+         * re-read from storage get the same word. Describes the recording, never the person.
+         */
+        fun classify(usableFraction: Double, clippedFraction: Double): SignalQualityLabel = when {
+            usableFraction >= GOOD_MIN_USABLE && clippedFraction < GOOD_MAX_CLIPPED -> GOOD
+            usableFraction >= FAIR_MIN_USABLE && clippedFraction < FAIR_MAX_CLIPPED -> FAIR
+            else -> POOR
+        }
+    }
+}
 
 data class SignalQualitySummary(
     val usableChannelsFraction: Double,
@@ -47,11 +76,7 @@ class SignalQualityEstimator(
         val clippedFraction = clipped.toDouble() / totalValues
         val flatlineFraction = flatlineChannels.toDouble() / channelCount
         val usableFraction = (1.0 - flatlineFraction - clippedFraction).coerceIn(0.0, 1.0)
-        val label = when {
-            usableFraction >= 0.9 && clippedFraction < 0.01 -> SignalQualityLabel.GOOD
-            usableFraction >= 0.65 && clippedFraction < 0.05 -> SignalQualityLabel.FAIR
-            else -> SignalQualityLabel.POOR
-        }
+        val label = SignalQualityLabel.classify(usableFraction, clippedFraction)
         return SignalQualitySummary(usableFraction, clippedFraction, flatlineFraction, label)
     }
 }
