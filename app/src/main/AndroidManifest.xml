@@ -29,18 +29,28 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+    <!-- Desktop-class Android devices report no touchscreen; do not filter them out. -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:resizeableActivity="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ebbflow">
 
         <activity
             android:name=".ui.MainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation|density"
             android:exported="true">
+            <!-- Freeform / desktop-mode window defaults; ignored on phones. -->
+            <layout
+                android:defaultWidth="480dp"
+                android:defaultHeight="720dp"
+                android:minWidth="320dp"
+                android:minHeight="360dp" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
