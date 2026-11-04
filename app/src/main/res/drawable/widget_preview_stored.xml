@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Picker preview (before Android 12) for the Stored on this phone widget. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="110dp"
+    android:viewportWidth="220"
+    android:viewportHeight="110">
+    <path
+        android:fillColor="#FF181D23"
+        android:pathData="M12,0 L208,0 Q220,0 220,12 L220,98 Q220,110 208,110 L12,110 Q0,110 0,98 L0,12 Q0,0 12,0 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M14,14 h90 v6 h-90 Z" />
+    <path
+        android:strokeColor="#FF4FC3F7"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M15,42 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 Z" />
+    <path
+        android:fillColor="#FFE6EBF0"
+        android:pathData="M36,38 h80 v9 h-80 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M14,64 h120 v6 h-120 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M14,80 h40 v6 h-40 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M84,80 h40 v6 h-40 Z" />
+    <path
+        android:fillColor="#FFA9B4BF"
+        android:pathData="M154,80 h40 v6 h-40 Z" />
+    <path
+        android:fillColor="#FFE6EBF0"
+        android:pathData="M14,92 h20 v8 h-20 Z" />
+    <path
+        android:fillColor="#FFE6EBF0"
+        android:pathData="M84,92 h34 v8 h-34 Z" />
+    <path
+        android:fillColor="#FFE6EBF0"
+        android:pathData="M154,92 h30 v8 h-30 Z" />
+</vector>

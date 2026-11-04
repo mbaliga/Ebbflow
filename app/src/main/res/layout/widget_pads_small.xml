@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- pads template, small (about 2x2): status line and one pad. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/w_glyph"
+            style="@style/Widget.Ebbflow.Glyph" />
+
+        <TextView
+            android:id="@+id/w_value"
+            style="@style/Widget.Ebbflow.Value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/w_pad1"
+            style="@style/Widget.Ebbflow.Pad" />
+    </LinearLayout>
+</LinearLayout>

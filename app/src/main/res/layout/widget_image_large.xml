@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- image template, large (about 4x3): adds the label-threshold lines with a legend, and the time span. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/w_title"
+            style="@style/Widget.Ebbflow.Title" />
+
+        <TextView
+            android:id="@+id/w_as_of"
+            style="@style/Widget.Ebbflow.AsOf" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/w_subtitle"
+        style="@style/Widget.Ebbflow.Caption" />
+
+    <ImageView
+        android:id="@+id/w_image"
+        style="@style/Widget.Ebbflow.Chart"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/w_empty"
+        style="@style/Widget.Ebbflow.Body"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/w_caption"
+        style="@style/Widget.Ebbflow.Caption"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/w_note"
+        style="@style/Widget.Ebbflow.Caption" />
+
+    <TextView
+        android:id="@+id/w_span"
+        style="@style/Widget.Ebbflow.Caption" />
+</LinearLayout>

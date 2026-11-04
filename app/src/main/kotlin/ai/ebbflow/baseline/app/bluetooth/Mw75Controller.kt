@@ -53,7 +53,14 @@ class Mw75Controller(
 
         try {
             // --- 1. Find device ---
-            StreamHub.update { it.copy(phase = StreamPhase.SCANNING, message = "Looking for MW75…") }
+            val sessionStartedMs = System.currentTimeMillis()
+            StreamHub.update {
+                it.copy(
+                    phase = StreamPhase.SCANNING,
+                    message = "Looking for MW75…",
+                    sessionStartedMs = sessionStartedMs,
+                )
+            }
             val manager = context.getSystemService(Context.BLUETOOTH_SERVICE) as? BluetoothManager
             val adapter = manager?.adapter
             if (adapter == null || !adapter.isEnabled) {
@@ -76,7 +83,12 @@ class Mw75Controller(
                 fail(result.message ?: "BLE activation failed")
                 return
             }
-            StreamHub.update { it.copy(batteryPercent = result.batteryPercent) }
+            StreamHub.update {
+                it.copy(
+                    batteryPercent = result.batteryPercent,
+                    batteryReadMs = if (result.batteryPercent != null) System.currentTimeMillis() else 0L,
+                )
+            }
 
             // --- 3. Settle, then RFCOMM ---
             delay(Mw75Constants.RFCOMM_SETTLE_DELAY_MS)
@@ -121,6 +133,7 @@ class Mw75Controller(
                 errorRatePercent = stats.errorRate,
                 latestChannelsUv = packet.channels,
                 samplesPersisted = persisted.get(),
+                qualityUpdatedMs = System.currentTimeMillis(),
             )
         }
 

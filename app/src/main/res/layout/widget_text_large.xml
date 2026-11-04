@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- stat / card template, large (about 4x3 and taller): adds a caption, three detail lines and
+     a note pinned to the bottom. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    style="@style/Widget.Ebbflow.Root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/w_title"
+            style="@style/Widget.Ebbflow.Title" />
+
+        <TextView
+            android:id="@+id/w_as_of"
+            style="@style/Widget.Ebbflow.AsOf" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/w_glyph"
+            style="@style/Widget.Ebbflow.Glyph" />
+
+        <TextView
+            android:id="@+id/w_value"
+            style="@style/Widget.Ebbflow.Value" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/w_caption"
+        style="@style/Widget.Ebbflow.Caption"
+        android:layout_marginTop="2dp"
+        android:maxLines="2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_gap"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/w_stat1"
+            style="@style/Widget.Ebbflow.StatColumn">
+
+            <TextView
+                android:id="@+id/w_stat1_name"
+                style="@style/Widget.Ebbflow.Caption" />
+
+            <TextView
+                android:id="@+id/w_stat1_value"
+                style="@style/Widget.Ebbflow.StatValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/w_stat2"
+            style="@style/Widget.Ebbflow.StatColumn">
+
+            <TextView
+                android:id="@+id/w_stat2_name"
+                style="@style/Widget.Ebbflow.Caption" />
+
+            <TextView
+                android:id="@+id/w_stat2_value"
+                style="@style/Widget.Ebbflow.StatValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/w_stat3"
+            style="@style/Widget.Ebbflow.StatColumn">
+
+            <TextView
+                android:id="@+id/w_stat3_name"
+                style="@style/Widget.Ebbflow.Caption" />
+
+            <TextView
+                android:id="@+id/w_stat3_value"
+                style="@style/Widget.Ebbflow.StatValue" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- The detail rows take whatever height is left, so at a large font scale they are cut
+         before the note below: the note is the integrity line and must stay visible. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/widget_gap"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/w_detail1"
+            style="@style/Widget.Ebbflow.DetailRow">
+
+            <TextView
+                android:id="@+id/w_detail1_name"
+                style="@style/Widget.Ebbflow.DetailName" />
+
+            <TextView
+                android:id="@+id/w_detail1_value"
+                style="@style/Widget.Ebbflow.DetailValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/w_detail2"
+            style="@style/Widget.Ebbflow.DetailRow">
+
+            <TextView
+                android:id="@+id/w_detail2_name"
+                style="@style/Widget.Ebbflow.DetailName" />
+
+            <TextView
+                android:id="@+id/w_detail2_value"
+                style="@style/Widget.Ebbflow.DetailValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/w_detail3"
+            style="@style/Widget.Ebbflow.DetailRow">
+
+            <TextView
+                android:id="@+id/w_detail3_name"
+                style="@style/Widget.Ebbflow.DetailName" />
+
+            <TextView
+                android:id="@+id/w_detail3_value"
+                style="@style/Widget.Ebbflow.DetailValue" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/w_note"
+        style="@style/Widget.Ebbflow.Note"
+        android:layout_marginTop="@dimen/widget_gap" />
+</LinearLayout>

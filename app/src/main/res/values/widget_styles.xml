@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Styles for the RemoteViews widget layouts. Text is in sp, secondary text is 12sp or
+         larger, body text 14sp or larger, and every text slot ellipsizes. -->
+    <!-- Empty base so the dotted names below have a parent. -->
+    <style name="Widget.Ebbflow" parent="" />
+
+    <style name="Widget.Ebbflow.Root">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/widget_background</item>
+        <item name="android:padding">@dimen/widget_padding</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/widget_on_surface_variant</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="Widget.Ebbflow.AsOf">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/widget_gap</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/widget_on_surface_variant</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Glyph">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/widget_accent</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Value">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/widget_on_surface</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Caption">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/widget_on_surface_variant</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Body">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/widget_on_surface</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Note" parent="Widget.Ebbflow.Caption">
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <!-- A stat column: name over value. -->
+    <style name="Widget.Ebbflow.StatColumn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Widget.Ebbflow.StatValue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/widget_on_surface</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <!-- A detail line: name at the start, value at the end. -->
+    <style name="Widget.Ebbflow.DetailRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Widget.Ebbflow.DetailName" parent="Widget.Ebbflow.Caption">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Widget.Ebbflow.DetailValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/widget_gap</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/widget_on_surface</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- A pad: one action, at least 48dp tall. -->
+    <style name="Widget.Ebbflow.Pad">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/widget_pad_background</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/widget_on_surface</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Widget.Ebbflow.Chart">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:tint">@color/widget_accent</item>
+    </style>
+</resources>

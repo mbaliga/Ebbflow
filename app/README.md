@@ -16,6 +16,10 @@ Signal quality describes acquisition integrity only. It is not a focus, mood, di
 or clinical measurement. Advanced state estimates may later arrive through an optional Baseline
 adapter and must remain separately labelled and versioned.
 
+Six home-screen App Widgets (headset, signal quality, last capture, capture shortcut, stored on
+this phone, quality history) report the same acquisition integrity on any launcher; they never
+start Bluetooth. See `docs/widgets.md`, including what still needs checking on a device.
+
 Build with Android SDK 35 configured in `local.properties`:
 
 ```bash

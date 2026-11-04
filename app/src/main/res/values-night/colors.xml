@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night pair of the home-screen widget colours in values/colors.xml. -->
+    <color name="widget_surface">#FF181D23</color>
+    <color name="widget_on_surface">#FFE6EBF0</color>
+    <color name="widget_on_surface_variant">#FFA9B4BF</color>
+    <color name="widget_accent">#FF4FC3F7</color>
+    <color name="widget_pad">#FF26313B</color>
+    <color name="widget_pad_pressed">#FF3A4651</color>
+</resources>

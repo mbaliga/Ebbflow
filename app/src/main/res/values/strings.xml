@@ -3,4 +3,141 @@
     <string name="app_name">ebbflow</string>
     <string name="streaming_channel_name">EEG streaming</string>
     <string name="streaming_notification_title">ebbflow is streaming EEG</string>
+
+    <!--
+      Home-screen widgets. They report acquisition integrity only: never focus, attention or
+      any other person-state wording, never the headset's name, never signal values.
+    -->
+    <string name="widget_name_headset">Headset</string>
+    <string name="widget_desc_headset">Stream phase and headset battery, live or last known.</string>
+    <string name="widget_name_quality">Signal quality</string>
+    <string name="widget_desc_quality">The app\'s quality label with usable, clipped and flatline shares.</string>
+    <string name="widget_name_last_capture">Last capture</string>
+    <string name="widget_desc_last_capture">Integrity summary of the most recent capture.</string>
+    <string name="widget_name_capture">Capture shortcut</string>
+    <string name="widget_desc_capture">Opens ebbflow to connect. Never starts Bluetooth from the home screen.</string>
+    <string name="widget_name_stored">Stored on this phone</string>
+    <string name="widget_desc_stored">Whether raw EEG is stored, and how many quality summaries are kept.</string>
+    <string name="widget_name_history">Quality history</string>
+    <string name="widget_desc_history">Usable-channel share across the last capture, drawn as a line.</string>
+
+    <string name="widget_loading">Loading…</string>
+    <string name="widget_error_read">Couldn\'t read ebbflow\'s data</string>
+    <string name="widget_duration_under_minute">Under 1 min</string>
+    <string name="widget_duration_minutes">%1$d min</string>
+    <string name="widget_duration_hours_minutes">%1$d h %2$02d min</string>
+
+    <string name="widget_title_headset">Headset</string>
+    <string name="widget_title_quality">Signal quality</string>
+    <string name="widget_title_last_capture">Last capture</string>
+    <string name="widget_title_this_capture">This capture</string>
+    <string name="widget_title_capture">Capture</string>
+    <string name="widget_title_stored">Stored on this phone</string>
+    <string name="widget_title_history">Quality history</string>
+
+    <string name="widget_status_not_connected">Not connected yet</string>
+    <string name="widget_status_scanning">Looking for headset</string>
+    <string name="widget_status_activating">Activating EEG</string>
+    <string name="widget_status_connecting">Connecting</string>
+    <string name="widget_status_streaming">Streaming</string>
+    <string name="widget_status_stopped">Stopped</string>
+    <string name="widget_status_error">Error</string>
+    <string name="widget_status_not_running">Not running</string>
+
+    <string name="widget_open_to_connect">Open ebbflow to connect</string>
+    <string name="widget_error_hint">Open ebbflow for details</string>
+    <string name="widget_last_known_phase">Last known: %1$s</string>
+    <string name="widget_as_of">as of %1$s</string>
+    <string name="widget_dash" translatable="false">—</string>
+    <string name="widget_integrity_note">Acquisition integrity only. Not a cognitive or clinical estimate.</string>
+
+    <string name="widget_battery">Battery</string>
+    <string name="widget_battery_short">Battery %1$s</string>
+    <string name="widget_battery_unread">Battery not read</string>
+    <string name="widget_battery_read">Read at</string>
+    <string name="widget_not_read">Not read</string>
+    <string name="widget_started">Started</string>
+    <string name="widget_ended">Ended</string>
+    <string name="widget_last_heard">Last heard</string>
+    <string name="widget_updated">Updated</string>
+    <string name="widget_valid_packets">Valid packets</string>
+    <string name="widget_invalid_packets">Invalid packets</string>
+    <string name="widget_packet_errors">Packet errors</string>
+    <string name="widget_packets">Packets</string>
+    <string name="widget_no_packets_yet">None yet</string>
+    <string name="widget_no_packets_last">None in the last session</string>
+
+    <string name="widget_quality_none">No signal yet</string>
+    <string name="widget_quality_none_hint">Shown once streaming starts</string>
+    <string name="widget_quality_waiting">Waiting for signal</string>
+    <string name="widget_quality_live">Live</string>
+    <string name="widget_quality_last_known">Last known, %1$s</string>
+    <string name="widget_label_good">Good</string>
+    <string name="widget_label_fair">Fair</string>
+    <string name="widget_label_poor">Poor</string>
+    <string name="widget_signal_good">Good signal</string>
+    <string name="widget_signal_fair">Fair signal</string>
+    <string name="widget_signal_poor">Poor signal</string>
+    <string name="widget_labeled" translatable="false">%1$s %2$s</string>
+    <string name="widget_labeled_value">%1$s %2$s %3$s</string>
+    <string name="widget_usable">Usable</string>
+    <string name="widget_clipped">Clipped</string>
+    <string name="widget_flatline">Flatline</string>
+    <string name="widget_usable_short">Usable %1$s</string>
+    <string name="widget_rule_good">%1$s+ usable, under %2$s clipped</string>
+    <string name="widget_rule_fair">%1$s+ usable, under %2$s clipped</string>
+    <string name="widget_rule_poor">Anything below Fair</string>
+
+    <string name="widget_no_captures">No captures yet</string>
+    <string name="widget_no_captures_hint">Summaries appear after streaming</string>
+    <string name="widget_usable_avg_short">%1$s usable avg</string>
+    <string name="widget_so_far">so far</string>
+    <string name="widget_usable_avg">Usable avg</string>
+    <string name="widget_clipped_avg">Clipped avg</string>
+    <string name="widget_flatline_avg">Flatline avg</string>
+    <string name="widget_summaries">Summaries</string>
+    <string name="widget_truncated_note">Covers the newest %1$s summaries only</string>
+
+    <string name="widget_raw_off">Raw EEG off</string>
+    <string name="widget_raw_on">Raw EEG stored</string>
+    <string name="widget_raw_eeg">Raw EEG</string>
+    <string name="widget_off">Off</string>
+    <string name="widget_on">On</string>
+    <string name="widget_raw_off_detail">No raw-EEG recorder. Each summary also keeps one averaged µV value.</string>
+    <string name="widget_nothing_stored">Nothing stored yet</string>
+    <string name="widget_summaries_count">Quality summaries: %1$s</string>
+    <string name="widget_size">Size</string>
+    <string name="widget_oldest">Oldest</string>
+    <string name="widget_newest">Newest</string>
+    <string name="widget_network">Network</string>
+    <string name="widget_network_none">No internet permission</string>
+    <string name="widget_network_requested">Internet permission requested</string>
+
+    <string name="widget_pad_connect">Open to connect</string>
+    <string name="widget_pad_live">Open live view</string>
+    <string name="widget_pad_bluetooth">Bluetooth settings</string>
+    <string name="widget_capture_hint">Capture starts inside ebbflow, never from the home screen.</string>
+    <string name="widget_tap_to_open">Tap to open ebbflow</string>
+
+    <string name="widget_history_subtitle">Usable channels, last capture</string>
+    <string name="widget_history_subtitle_live">Usable channels, this capture</string>
+    <string name="widget_history_empty">No quality history yet</string>
+    <string name="widget_history_empty_hint">A line appears after a capture</string>
+    <string name="widget_history_caption">Low %1$s · avg %2$s · last %3$s</string>
+    <string name="widget_history_legend">Dashes: Good %1$s · dots: Fair %2$s</string>
+    <string name="widget_history_span">%1$s – %2$s</string>
+    <string name="widget_history_alt">Usable-channel share from %1$s to %2$s: lowest %3$s, average %4$s, latest %5$s.</string>
+
+    <!-- Sample values for the widget picker previews only; never shown as data. -->
+    <string name="widget_preview_battery" translatable="false" formatted="false">Battery 72% · 14:32</string>
+    <string name="widget_preview_battery_value" translatable="false" formatted="false">72%</string>
+    <string name="widget_preview_time" translatable="false">14:02</string>
+    <string name="widget_preview_as_of" translatable="false">as of 14:32</string>
+    <string name="widget_preview_usable" translatable="false" formatted="false">94%</string>
+    <string name="widget_preview_clipped" translatable="false" formatted="false">0.3%</string>
+    <string name="widget_preview_flatline" translatable="false" formatted="false">0%</string>
+    <string name="widget_preview_duration" translatable="false">42 min</string>
+    <string name="widget_preview_capture_caption" translatable="false" formatted="false">93% usable avg · 14:44</string>
+    <string name="widget_preview_count" translatable="false">Quality summaries: 5,040</string>
+    <string name="widget_preview_history_caption" translatable="false" formatted="false">Low 71% · avg 93% · last 95%</string>
 </resources>

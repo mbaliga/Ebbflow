@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home-screen widgets. values-v31 swaps the radius for the launcher's own. -->
+    <dimen name="widget_radius">16dp</dimen>
+    <dimen name="widget_padding">12dp</dimen>
+    <dimen name="widget_pad_radius">12dp</dimen>
+    <dimen name="widget_gap">8dp</dimen>
+</resources>

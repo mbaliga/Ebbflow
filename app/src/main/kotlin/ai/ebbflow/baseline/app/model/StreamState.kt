@@ -32,4 +32,13 @@ data class StreamState(
     val samplesPersisted: Long = 0,
     val message: String? = null,
     val lastUpdateMs: Long = 0,
+    /** Wall-clock time this session's start() began; 0 before the first session. */
+    val sessionStartedMs: Long = 0,
+    /** When [batteryPercent] was read from the headset (at activation); 0 when not read. */
+    val batteryReadMs: Long = 0,
+    /**
+     * When the quality fields last came from a fresh summary. Fields carry over between
+     * sessions, so a value older than [sessionStartedMs] belongs to the previous session.
+     */
+    val qualityUpdatedMs: Long = 0,
 )
