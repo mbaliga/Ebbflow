@@ -1,0 +1,33 @@
+An open-source EEG application for consumer headsets. It streams your signal,
+stores it on your device, and helps you see how your current state compares with
+your own normal.
+
+The reference is you. Not a population average, not a benchmark, not a score out
+of a hundred. The app learns what your ordinary looks like and shows you when you
+have moved away from it.
+
+WHAT IT DOES
+• Streams 12-channel EEG from the Master and Dynamic MW75 Neuro over Bluetooth.
+• Parses and stores every reading locally, in a database on your phone.
+• Estimates a state from your own recent history, so the comparison is against
+  yourself.
+• Keeps streaming while the screen is off, through a foreground service you can
+  see and stop.
+
+WHAT IT REFUSES TO DO
+• Nothing is uploaded. There is no cloud sync, no account and no server of ours.
+• No telemetry, no analytics, no crash reporting.
+• No score, no streak, no leaderboard. Your brain is not a game.
+• It does not tell you what to do. It shows you what changed and leaves the
+  reading to you.
+
+OPEN, AND HONEST ABOUT ITS LIMITS
+Ebbflow is open source, including the device layer and the packet parser, which
+began as a port of the reference Python streamer. The state estimate is a research
+instrument built around a single-subject study, not a validated clinical measure.
+
+You need a compatible EEG headset. The app is the software half only.
+
+Ebbflow is not a medical device. It does not diagnose, treat or prevent any
+condition, and it is not for clinical decisions. If you want to share a recording
+with your own clinician, that is an export you perform deliberately.
