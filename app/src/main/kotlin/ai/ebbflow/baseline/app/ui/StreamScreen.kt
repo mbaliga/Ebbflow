@@ -1,6 +1,7 @@
 package ai.ebbflow.baseline.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -45,49 +47,56 @@ fun StreamScreen(
         StreamPhase.CONNECTING_RFCOMM,
     )
 
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+            .verticalScroll(rememberScrollState()),
+        contentAlignment = Alignment.TopCenter,
     ) {
-        Text("ebbflow", style = MaterialTheme.typography.headlineMedium)
-        Text(
-            "MW75 EEG acquisition",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-
-        StatusCard(state)
-        SignalQualityCard(state)
-
-        if (streaming || state.validPackets > 0) {
-            DiagnosticsCard(state, persistedCount)
-        }
-
-        if (busy) {
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        Column(
+            modifier = Modifier
+                .widthIn(max = 640.dp)
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Button(
-                onClick = onStart,
-                enabled = !streaming && !busy,
-                modifier = Modifier.weight(1f),
-            ) { Text("Start") }
-            OutlinedButton(
-                onClick = onStop,
-                enabled = streaming || busy,
-                modifier = Modifier.weight(1f),
-            ) { Text("Stop") }
-        }
+            Text("ebbflow", style = MaterialTheme.typography.headlineMedium)
+            Text(
+                "MW75 EEG acquisition",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
 
-        state.message?.let {
-            Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+            StatusCard(state)
+            SignalQualityCard(state)
+
+            if (streaming || state.validPackets > 0) {
+                DiagnosticsCard(state, persistedCount)
+            }
+
+            if (busy) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Button(
+                    onClick = onStart,
+                    enabled = !streaming && !busy,
+                    modifier = Modifier.weight(1f),
+                ) { Text("Start") }
+                OutlinedButton(
+                    onClick = onStop,
+                    enabled = streaming || busy,
+                    modifier = Modifier.weight(1f),
+                ) { Text("Stop") }
+            }
+
+            state.message?.let {
+                Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+            }
         }
     }
 }

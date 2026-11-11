@@ -32,3 +32,7 @@ and evidence grade.
 
 The older `research_brief.md` and `build_plan.md` are retained as historical research inputs;
 they are not the current cross-repository architecture.
+
+## Platforms
+
+Multi-platform porting plan (Ubuntu Touch, Linux, iOS/iPadOS, macOS, Windows; a plan only, nothing built): [docs/porting_plan.md](docs/porting_plan.md).

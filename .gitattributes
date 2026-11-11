@@ -1,0 +1,9 @@
+# Byte-exact files: never convert line endings, so a Windows checkout compares equal
+# to the bytes the tests expect.
+core-eeg-community/src/test/resources/parity/** -text
+*.bin -text
+*.dat -text
+*.csv -text
+*.edf -text
+*.png -text
+*.jar -text
